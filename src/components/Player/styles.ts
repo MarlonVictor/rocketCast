@@ -6,7 +6,7 @@ export const PlayerContainer = styled.div`
     height: 100vh;
     padding: 3rem 4rem;
 
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -33,6 +33,7 @@ export const PlayerContainer = styled.div`
     }
 
     @media(max-width: 1190px) {
+        display: flex;
         width: 100vw;
         height: 14rem;
         padding: 1rem 4rem;
