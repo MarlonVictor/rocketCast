@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import ptBR  from 'date-fns/locale/pt-BR';
 import { format, parseISO } from 'date-fns';
@@ -19,7 +20,6 @@ interface Episode {
     members: string;
     publishedAt: string;
     duration: number;
-    description: string;
     url: string;
     durationAsString: string;
 }
@@ -48,7 +48,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                 <img src={ep.thumbnail} alt={ep.title} />
 
                                 <div className="episodeDetails">
-                                    <a href="">{ep.title}</a>
+                                    <Link href={`/episodes/${ep.id}`}>
+                                        <a>{ep.title}</a>
+                                    </Link>
                                     <p>{ep.members}</p>
                                     <span>{ep.publishedAt}</span>
                                     <span>{ep.durationAsString}</span>
@@ -68,12 +70,14 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
                 <table cellSpacing={0}>
                     <thead>
-                        <th className="tableHidden"></th>
-                        <th>Podcast</th>
-                        <th className="tableHidden">Integrantes</th>
-                        <th className="tableHiddenSecond">Data</th>
-                        <th>Duração</th>
-                        <th></th>
+                        <tr>
+                            <th className="tableHidden"></th>
+                            <th>Podcast</th>
+                            <th className="tableHidden">Integrantes</th>
+                            <th className="tableHiddenSecond">Data</th>
+                            <th>Duração</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
                         {allEpisodes.map(ep => {
@@ -84,9 +88,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     </td>
 
                                     <td>
-                                        <a href="">
-                                            {ep.title}
-                                        </a>
+                                        <Link href={`/episodes/${ep.id}`}>
+                                            <a>{ep.title}</a>
+                                        </Link>
                                     </td>
 
                                     <td className="tableHidden">
@@ -133,7 +137,6 @@ export const getStaticProps: GetStaticProps = async () => {
             members: ep.members,
             publishedAt: format(parseISO(ep.published_at), 'd MMM yy', { locale : ptBR }),
             duration: Number(ep.file.duration),
-            description: ep.description,
             durationAsString: convertDurationToTimeString(Number(ep.file.duration)),
             url: ep.file.url,
         }
@@ -146,6 +149,7 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             latestEpisodes,
             allEpisodes,
-        }
+        },
+        revalidate: 60 * 60 * 24, // 24h
     }
 }
