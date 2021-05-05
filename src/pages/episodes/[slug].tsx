@@ -1,10 +1,15 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { BiPlay } from 'react-icons/bi';
+import { RiArrowLeftSLine } from 'react-icons/ri';
 
 import { api } from '../../services/api';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
+
+import { EpisodeContainer } from '../../styles/pages/episode';
 
 
 interface Episode {
@@ -25,12 +30,39 @@ interface SlugProps {
 
 export default function Slug({ episode }: SlugProps) {
     return (
-        <div>
-            <Head>
-                <title>{episode.title}</title>
-            </Head>
-            <h1>{episode.title}</h1>
-        </div>
+        <EpisodeContainer>
+            <section>
+                <Head>
+                    <title>{episode.title}</title>
+                </Head>
+                
+                <div className="thumbnail">
+                    <Link href="/">
+                        <button type="button">
+                            <RiArrowLeftSLine />
+                        </button>
+                    </Link>
+
+                    <img src={episode.thumbnail} />
+
+                    <button type="button">
+                        <BiPlay />
+                    </button>
+                </div>
+
+                <header>
+                    <h1>{episode.title}</h1>
+                    <span>{episode.members}</span>
+                    <span>{episode.publishedAt}</span>
+                    <span>{episode.durationAsString}</span>
+                </header>
+
+                <div 
+                    className="description" 
+                    dangerouslySetInnerHTML={{ __html: episode.description }}
+                />
+            </section>
+        </EpisodeContainer>
     )
 }
 
