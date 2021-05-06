@@ -29,7 +29,6 @@ export const EpisodeContainer = styled.div`
             height: 160px;
 
             border-radius: 0.879rem;
-            object-fit: cover;
         }
 
         button {

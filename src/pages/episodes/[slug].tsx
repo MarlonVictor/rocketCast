@@ -1,6 +1,8 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import Image from 'next/image';
+
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { BiPlay } from 'react-icons/bi';
@@ -42,10 +44,16 @@ export default function Slug({ episode }: SlugProps) {
                             <RiArrowLeftSLine />
                         </button>
                     </Link>
+                    <Image 
+                        width={700}
+                        height={160}
+                        src={episode.thumbnail}
+                        alt={episode.title}
+                        objectFit="cover"
+                    />
+                    {/* <img src={episode.thumbnail} /> */}
 
-                    <img src={episode.thumbnail} />
-
-                    <button type="button">
+                    <button type="button" onClick={() => console.log(episode.thumbnail + episode.title)}>
                         <BiPlay />
                     </button>
                 </div>
@@ -67,7 +75,14 @@ export default function Slug({ episode }: SlugProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const { data } = await api.get('/episodes')
+    //const { data } = await api.get('/episodes')
+    const { data } = await api.get('episodes', {
+        params: {
+            _limit: 3,
+            _sort: 'published_at',
+            _order: 'desc'
+        }
+    })
 
     const paths = data.map((path: Episode) => {
         return {

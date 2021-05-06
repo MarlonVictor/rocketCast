@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import ptBR  from 'date-fns/locale/pt-BR';
 import { format, parseISO } from 'date-fns';
@@ -45,7 +46,14 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                     {latestEpisodes.map(ep => {
                         return (
                             <li key={ep.id}>
-                                <img src={ep.thumbnail} alt={ep.title} />
+                                <Image 
+                                    width={200}
+                                    height={192}
+                                    src={ep.thumbnail}
+                                    alt={ep.title}
+                                    objectFit="cover"
+                                />
+                                {/* <img src={ep.thumbnail} alt={ep.title} /> */}
 
                                 <div className="episodeDetails">
                                     <Link href={`/episodes/${ep.id}`}>
@@ -84,7 +92,14 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                             return (
                                 <tr key={ep.id}>
                                     <td className="tableHidden" style={{ width: 72 }}>
-                                        <img src={ep.thumbnail} alt={ep.title} />
+                                        <Image 
+                                            width={150}
+                                            height={120}
+                                            src={ep.thumbnail}
+                                            alt={ep.title}
+                                            objectFit="cover"
+                                        />
+                                        {/* <img src={ep.thumbnail} alt={ep.title} /> */}
                                     </td>
 
                                     <td>

@@ -108,7 +108,6 @@ export const LatestEpisodes = styled.section`
                 height: 6rem;
 
                 border-radius: 0.5rem;
-                object-fit: cover;
 
                 @media(max-width: 768px) {
                     width: 100%;
@@ -228,12 +227,10 @@ export const AllEpisodes = styled.section`
             }
 
             img {
-                width: 3.5rem;
+                min-width: 3.5rem;
                 height: 3.5rem;
 
-                object-fit: cover;
                 border-radius: 0.5rem;
-
             }
 
             a {
