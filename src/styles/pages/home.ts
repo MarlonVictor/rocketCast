@@ -32,6 +32,12 @@ export const HomeContainer = styled.div`
     padding: 0 4rem;
     height: calc(100vh - 5rem);
 
+    &.PlayerOpened {
+        @media(min-width: 1190px) {
+            max-width: calc(100vw - 25rem);
+        }
+    }
+
     h2 {
         margin-top: 3rem;
         margin-bottom: 1.5rem;
@@ -70,9 +76,9 @@ export const LatestEpisodes = styled.section`
     }
 
     ul {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
         gap: 1rem;
+        justify-content: space-between;
         padding-bottom: 10px;
         
         list-style: none;
@@ -89,7 +95,8 @@ export const LatestEpisodes = styled.section`
         li {
             display: flex;
             align-items: center;
-            max-width: 400px;
+            width: 100%;
+            min-width: 400px;
 
             position: relative;
             padding: 1rem;
@@ -100,7 +107,7 @@ export const LatestEpisodes = styled.section`
 
             @media(max-width: 768px) {
                 flex-direction: column;
-                max-width: 210px;
+                min-width: 210px;
             }
 
             img {

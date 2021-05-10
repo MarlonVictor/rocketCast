@@ -12,6 +12,12 @@ export const HeaderContainer = styled.header`
 
     border-bottom: 1px solid var(--gray-100);
 
+    &.PlayerOpened {
+        @media(min-width: 1190px) {
+            max-width: calc(100vw - 25rem);
+        }
+    }
+
     p {
         margin-left: 2rem;
         padding: 0.25rem 0 0.25rem 2rem;

@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { PlayerContext } from '../../context/PlayerContext';
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
@@ -8,6 +10,8 @@ import { HeaderContainer, Logo } from './styles';
 
 
 export function Header() {
+    const { isOpened } = useContext(PlayerContext)
+
     const currentData = format(new Date(), 'EEEEEE, d, MMMM', {
         locale: ptBR
     })
@@ -18,7 +22,7 @@ export function Header() {
 
     
     return (
-        <HeaderContainer>
+        <HeaderContainer className={isOpened && 'PlayerOpened'}>
             <Logo>
                 <img src="/logo.svg" alt="RocketCast" />
                 <h2>RocketCast</h2>

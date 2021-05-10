@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -9,6 +10,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import { BiPlay } from 'react-icons/bi';
 
 import { api } from '../services/api';
+import { PlayerContext } from '../context/PlayerContext';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 
 import { HomeContainer, LatestEpisodes, AllEpisodes } from '../styles/pages/home';
@@ -31,8 +33,10 @@ interface HomeProps {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
+    const { isOpened, toggleIsOpened} = useContext(PlayerContext)
+
     return (
-        <HomeContainer>
+        <HomeContainer className={isOpened && 'PlayerOpened'}>
             <Head>
                 <title>Home | RocketCast</title>
             </Head>
@@ -53,7 +57,6 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     alt={ep.title}
                                     objectFit="cover"
                                 />
-                                {/* <img src={ep.thumbnail} alt={ep.title} /> */}
 
                                 <div className="episodeDetails">
                                     <Link href={`/episodes/${ep.id}`}>
@@ -64,7 +67,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     <span>{ep.durationAsString}</span>
                                 </div>
 
-                                <button type="button">
+                                <button type="button" onClick={toggleIsOpened}>
                                     <BiPlay />
                                 </button>
                             </li>
@@ -99,7 +102,6 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                             alt={ep.title}
                                             objectFit="cover"
                                         />
-                                        {/* <img src={ep.thumbnail} alt={ep.title} /> */}
                                     </td>
 
                                     <td>
@@ -121,7 +123,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     </td>
 
                                     <td>
-                                        <button type="button">
+                                        <button type="button" onClick={toggleIsOpened}>
                                             <BiPlay />
                                         </button>
                                     </td>

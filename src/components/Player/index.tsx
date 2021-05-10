@@ -1,11 +1,15 @@
+import { useContext } from 'react';
+import { PlayerContext } from '../../context/PlayerContext';
 import { BiShuffle, BiSkipPrevious, BiPlay, BiSkipNext, BiRepeat } from 'react-icons/bi';
 
 import { PlayerContainer, EmptyPlayer, ProgressContainer, ButtonContainer } from './styles';
 
 
 export function Player() {
+    const { isOpened } = useContext(PlayerContext)
+
     return (
-        <PlayerContainer>
+        <PlayerContainer className={!isOpened && 'isClosed'}>
             <header>
                 <img src="/playing.svg" alt="Tocando agora" />
                 <strong>Tocando agora</strong>
@@ -27,7 +31,7 @@ export function Player() {
                 </ProgressContainer>
 
                 <ButtonContainer>
-                    <button type="button">
+                    <button type="button" className="side">
                         <BiShuffle />
                     </button>
                     <button type="button" className="main">
@@ -39,7 +43,7 @@ export function Player() {
                     <button type="button" className="main">
                         <BiSkipNext />
                     </button>
-                    <button type="button">
+                    <button type="button" className="side">
                         <BiRepeat />
                     </button>
                 </ButtonContainer>

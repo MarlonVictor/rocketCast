@@ -6,13 +6,20 @@ export const PlayerContainer = styled.div`
     height: 100vh;
     padding: 3rem 4rem;
 
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 
+    position: absolute;
+    right: 0;
+
     color: var(--white);
     background: var(--purple-900);
+
+    &.isClosed {
+        display: none;
+    }
 
     header {
         display: flex;
@@ -33,7 +40,7 @@ export const PlayerContainer = styled.div`
     }
 
     @media(max-width: 1190px) {
-        display: flex;
+        display: flex !important;
         width: 100vw;
         height: 14rem;
         padding: 1rem 4rem;
@@ -104,14 +111,26 @@ export const ButtonContainer = styled.div`
         background: transparent;
         border: 0;
         font-size: 1.3rem;
+        position: relative;
+
+        svg {
+            position: absolute;
+            top: 50%;
+            transform: translate(-45%, -50%);
+        }
+
+        &.side {
+            margin: 0 20px;
+        }
         
         &.main {
             font-size: 2rem;
+            margin: 0 5px;
         }
 
         &.playBtn {
             width: 4rem;
-            height: 4rem;
+            height: 3.5rem;
             
             border-radius: 1rem;
             background: var(--purple-800);
