@@ -25,6 +25,10 @@ export const PlayerContainer = styled.div`
         display: flex;
         align-items: center;
         gap: 1rem;
+
+        @media(max-width: 1191px) {
+            display: none;
+        }
     }
 
     strong {
@@ -41,9 +45,10 @@ export const PlayerContainer = styled.div`
 
     @media(max-width: 1190px) {
         display: flex !important;
+        justify-content: center;
         width: 100vw;
-        height: 14rem;
-        padding: 1rem 4rem;
+        height: auto;
+        padding: 2rem 4rem;
 
         position: absolute;
         bottom: 0;
@@ -51,6 +56,44 @@ export const PlayerContainer = styled.div`
 
     @media(max-width: 425px) {
         padding: 1rem 1.5rem;
+    }
+`
+
+export const PlayingEpisode = styled.div`
+    text-align: center;
+    
+    img {
+        border-radius: 1.5rem;
+
+        @media(max-width: 1191px) {
+            position: absolute;
+            bottom: -600px;
+        }
+    }
+
+    strong {
+        display: block;
+        margin-top: 1.5rem;
+        font: 600 1.1rem Lexend, sans-serif;
+
+        @media(max-width: 1191px) {
+            margin-top: -1rem;
+        }
+
+        @media(max-width: 375px) {
+            font-size: 1rem;
+        }
+    }
+
+    span {
+        display: block;
+        margin-top: 1rem;
+        opacity: 0.6;
+        font-size: 0.85rem;
+
+        @media(max-width: 1191px) {
+            margin-bottom: 2rem;
+        }
     }
 `
 
@@ -104,19 +147,31 @@ export const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
     gap: 1.5rem;
 
     button {
+        position: relative;
         background: transparent;
         border: 0;
         font-size: 1.3rem;
-        position: relative;
+
+        transition: filter 0.3s;
 
         svg {
             position: absolute;
             top: 50%;
             transform: translate(-45%, -50%);
+
+            color: #DDD;
+        }
+
+        &:disabled {
+            cursor: default;
+        }
+
+        &:hover:not(:disabled) {
+            filter: brightness(0.7);
         }
 
         &.side {
@@ -134,6 +189,10 @@ export const ButtonContainer = styled.div`
             
             border-radius: 1rem;
             background: var(--purple-800);
+
+            &:hover:not(:disabled) {
+                filter: brightness(0.9);
+            }
         }
     }
 

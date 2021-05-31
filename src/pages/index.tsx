@@ -10,7 +10,7 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import { BiPlay } from 'react-icons/bi';
 
 import { api } from '../services/api';
-import { PlayerContext } from '../context/PlayerContext';
+import { PlayerContext } from '../contexts/PlayerContext';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 
 import { HomeContainer, LatestEpisodes, AllEpisodes } from '../styles/pages/home';
@@ -33,7 +33,7 @@ interface HomeProps {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-    const { isOpened, toggleIsOpened} = useContext(PlayerContext)
+    const { isOpened, play } = useContext(PlayerContext)
 
     return (
         <HomeContainer className={isOpened && 'PlayerOpened'}>
@@ -67,7 +67,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     <span>{ep.durationAsString}</span>
                                 </div>
 
-                                <button type="button" onClick={toggleIsOpened}>
+                                <button type="button" onClick={() => play(ep)}>
                                     <BiPlay />
                                 </button>
                             </li>
@@ -123,7 +123,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     </td>
 
                                     <td>
-                                        <button type="button" onClick={toggleIsOpened}>
+                                        <button type="button" onClick={() => play(ep)}>
                                             <BiPlay />
                                         </button>
                                     </td>

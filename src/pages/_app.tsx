@@ -1,4 +1,4 @@
-import { PlayerContextProvider } from '../context/PlayerContext';
+import { PlayerContextProvider } from '../contexts/PlayerContext';
 import { Header } from '../components/Header';
 import { Player } from '../components/Player';
 

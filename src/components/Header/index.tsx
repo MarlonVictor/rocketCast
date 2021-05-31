@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { PlayerContext } from '../../context/PlayerContext';
+import { PlayerContext } from '../../contexts/PlayerContext';
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
