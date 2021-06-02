@@ -1,25 +1,27 @@
-import { useContext } from 'react';
-import { PlayerContext } from '../../contexts/PlayerContext';
+import Switch from 'react-switch';
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
-
-import Switch from 'react-switch';
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import { BsMoon, BsSun } from 'react-icons/bs';
+
+import { PlayerContext } from '../../contexts/PlayerContext';
 
 import { HeaderContainer, Logo } from './styles';
 
 
-export function Header() {
+interface HeaderProps {
+    toggleTheme: () => void;
+}
+
+export function Header({ toggleTheme }: HeaderProps) {
     const { isOpened } = useContext(PlayerContext)
+    const themeContext = useContext(ThemeContext)
+
 
     const currentData = format(new Date(), 'EEEEEE, d, MMMM', {
         locale: ptBR
     })
-
-    function toggleTheme() {
-        console.log('change')
-    }
-
     
     return (
         <HeaderContainer className={isOpened && 'PlayerOpened'}>
@@ -35,7 +37,7 @@ export function Header() {
             <Switch 
                 className={'switch'}
                 onChange={toggleTheme}
-                checked={false}
+                checked={themeContext.card !== '#FFF'}
                 checkedIcon={
                     <div style={{
                             display: "flex",
@@ -56,8 +58,9 @@ export function Header() {
                     <BsSun />
                 </div>
                 }
-                offColor={'#ccc'}
-                onColor={'#F7F8FA'}
+                offColor={'#E6E8EB'}
+                onColor={'#0D1117'}
+                activeBoxShadow={'0 0 2px 3px #E935C5'}
             />
         </HeaderContainer>
     )

@@ -5,17 +5,14 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         --white: #FFF;
 
-        --gray-50: #F7F8FA;
         --gray-100: #E6E8EB;
         --gray-200: #AFB2B1;
-        --gray-500: #808080;
-        --gray-800: #494D4B;
 
-        --purple-800: #3c0691;
-        --purple-900: #2a0466;
+        --purple-800: #3C0691;
+        --purple-900: #2A0466;
 
-        --pink-400: #e935c5;
-        --pink-500: #d541dd;
+        --pink-400: #E935C5;
+        --pink-500: #D541DD;
     }
 
     * {
@@ -30,36 +27,33 @@ export const GlobalStyle = createGlobalStyle`
             transition: .3s;
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--gray-200);
+            background:  ${({ theme }) => theme.border};
             border-radius: 10px;
         }
-        ::-webkit-scrollbar-thumb:hover{
-            background: var(--gray-300);
-        }
         ::-webkit-scrollbar-track{
-            background: var(--gray-100);
+            background:  ${({ theme }) => theme.scrollbar};
             border-radius: 10px;
         }
     }
 
     body {
-        background: var(--gray-50);
+        background: ${({ theme }) => theme.background};
         overflow-y: hidden;
     }
 
     body, input, textarea, button {
         font: 500 1rem Inter, sans-serif;
-        color: var(--gray-500);
+        color: ${({ theme }) => theme.text};
     }
 
     h1 {
         font: 600 2rem Lexend, sans-serif;
-        color: var(--gray-800);
+        color: ${({ theme }) => theme.title};
     }
 
     h2 {
         font: 600 1.5rem Lexend, sans-serif;
-        color: var(--gray-800);
+        color: ${({ theme }) => theme.title};
     }
 
     button {

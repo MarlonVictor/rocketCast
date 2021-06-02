@@ -36,7 +36,7 @@ export const EpisodeContainer = styled.div`
             width: 3rem;
             height: 3rem;
 
-            color: #fff;
+            color: var(--white);
             font-size: 2.2rem;
             z-index: 5;
 
@@ -80,7 +80,7 @@ export const EpisodeContainer = styled.div`
 
     header {
         padding-bottom: 1rem;
-        border-bottom: 1px solid var(--gray-100);
+        border-bottom: 1px solid ${({ theme }) => theme.border};
 
         h1 {
             margin: 2rem 0 1.5rem;
@@ -125,7 +125,7 @@ export const EpisodeContainer = styled.div`
         padding-bottom: 5rem;
 
         line-height: 1.6rem;
-        color: var(--gray-800);
+        color: ${({ theme }) => theme.title};
 
         p {
             margin: 1.5rem 0;

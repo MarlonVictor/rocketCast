@@ -5,12 +5,12 @@ const cssPlayButton = css`
     width: 2rem;
     height: 2rem;
 
-    background: var(--white);
+    background: ${({ theme }) => theme.button};
     color: var(--pink-500);
     font-size: 1.5rem;
 
     border-radius: 0.675rem;
-    border: 1px solid var(--gray-100);
+    border: 1px solid ${({ theme }) => theme.border};
 
     transition: filter .3s;
 
@@ -61,7 +61,7 @@ export const LatestEpisodes = styled.section`
             top: 85px;
 
             font-size: 4rem;
-            color: var(--gray-200);
+            color: ${({ theme }) => theme.border};
             
             z-index: 10;   
         }
@@ -85,7 +85,7 @@ export const LatestEpisodes = styled.section`
         overflow-x: auto;
 
         ::-webkit-scrollbar-thumb {
-            background: var(--gray-200);
+            background: ${({ theme }) => theme.border};
         }
 
         ::-webkit-scrollbar-track {
@@ -101,8 +101,8 @@ export const LatestEpisodes = styled.section`
             position: relative;
             padding: 1rem;
 
-            background: var(--white);
-            border: 1px solid var(--gray-100);
+            background: ${({ theme }) => theme.card};
+            border: 1px solid ${({ theme }) => theme.border};
             border-radius: 0.5rem;
 
             @media(max-width: 768px) {
@@ -134,7 +134,7 @@ export const LatestEpisodes = styled.section`
                     display: block;
 
                     font: 600 0.8rem Lexend, sans-serif;
-                    color: var(--gray-800);
+                    color: ${({ theme }) => theme.title};
                     line-height: 1.2rem;
 
                     &:hover {
@@ -174,7 +174,7 @@ export const LatestEpisodes = styled.section`
                             transform: translate(-50%, -50%);
 
                             border-radius: 2px;
-                            background: var(--gray-100);
+                            background: ${({ theme }) => theme.border};
                         }
                     }
                 }
@@ -216,7 +216,7 @@ export const AllEpisodes = styled.section`
         
         th, td {
             padding: 0.65rem 1rem;
-            border-bottom: 1px solid var(--gray-100);
+            border-bottom: 1px solid ${({ theme }) => theme.border};
         }
 
         th {
