@@ -7,6 +7,12 @@ export const EpisodeContainer = styled.div`
 
     min-height: calc(100vh - 5rem);
 
+    &.PlayerOpened {
+        @media(min-width: 1191px) {
+            margin-right: 25rem;
+        }
+    }
+
    section {
         position: absolute;
         left: 0;

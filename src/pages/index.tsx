@@ -8,6 +8,7 @@ import ptBR  from 'date-fns/locale/pt-BR';
 import { format, parseISO } from 'date-fns';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { BiPlay } from 'react-icons/bi';
+import { motion } from 'framer-motion';
 
 import { api } from '../services/api';
 import { PlayerContext } from '../contexts/PlayerContext';
@@ -47,9 +48,14 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 <RiArrowRightSLine className="sliderArrow" />
 
                 <ul>
-                    {latestEpisodes.map(ep => {
+                    {latestEpisodes.map((ep, key) => {
                         return (
-                            <li key={ep.id}>
+                            <motion.li 
+                                key={ep.id}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: [0, 1], y: 0 }}
+                                transition={{ duration: 0.8, delay: key/5 }}
+                            >
                                 <Image 
                                     width={200}
                                     height={192}
@@ -58,19 +64,19 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     objectFit="cover"
                                 />
 
-                                <div className="episodeDetails">
+                                <motion.div className="episodeDetails">
                                     <Link href={`/episodes/${ep.id}`}>
                                         <a>{ep.title}</a>
                                     </Link>
                                     <p>{ep.members}</p>
                                     <span>{ep.publishedAt}</span>
                                     <span>{ep.durationAsString}</span>
-                                </div>
+                                </motion.div>
 
                                 <button type="button" onClick={() => play(ep)}>
                                     <BiPlay />
                                 </button>
-                            </li>
+                            </motion.li>
                         )
                     })}
                 </ul>

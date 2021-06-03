@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useContext } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,6 +10,7 @@ import { BiPlay } from 'react-icons/bi';
 import { RiArrowLeftSLine } from 'react-icons/ri';
 
 import { api } from '../../services/api';
+import { PlayerContext } from '../../contexts/PlayerContext';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 
 import { EpisodeContainer } from '../../styles/pages/episode';
@@ -31,8 +33,10 @@ interface SlugProps {
 }
 
 export default function Slug({ episode }: SlugProps) {
+    const { isOpened, play } = useContext(PlayerContext)
+
     return (
-        <EpisodeContainer>
+        <EpisodeContainer className={isOpened && 'PlayerOpened'}>
             <section>
                 <Head>
                     <title>{episode.title}</title>
@@ -51,9 +55,8 @@ export default function Slug({ episode }: SlugProps) {
                         alt={episode.title}
                         objectFit="cover"
                     />
-                    {/* <img src={episode.thumbnail} /> */}
 
-                    <button type="button" onClick={() => console.log(episode.thumbnail + episode.title)}>
+                    <button type="button" onClick={() => play(episode)}>
                         <BiPlay />
                     </button>
                 </div>
@@ -75,7 +78,6 @@ export default function Slug({ episode }: SlugProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    //const { data } = await api.get('/episodes')
     const { data } = await api.get('episodes', {
         params: {
             _limit: 3,

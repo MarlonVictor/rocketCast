@@ -16,7 +16,7 @@ export const darkTheme = {
 
     background: '#202124',
     border: '#494D4D',
-    scrollbar: '#161B22',
+    scrollbar: '#6E6F6F',
     
     text: '#DEE0E1',
     title: '#EFEFF0',

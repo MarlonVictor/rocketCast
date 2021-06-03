@@ -27,11 +27,11 @@ export const GlobalStyle = createGlobalStyle`
             transition: .3s;
         }
         ::-webkit-scrollbar-thumb {
-            background:  ${({ theme }) => theme.border};
+            background:  ${({ theme }) => theme.scrollbar};
             border-radius: 10px;
         }
         ::-webkit-scrollbar-track{
-            background:  ${({ theme }) => theme.scrollbar};
+            background:  ${({ theme }) => theme.border};
             border-radius: 10px;
         }
     }

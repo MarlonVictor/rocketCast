@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
     
 
     &.PlayerOpened {
-        @media(min-width: 1190px) {
+        @media(min-width: 1191px) {
             max-width: calc(100vw - 25rem);
         }
     }
