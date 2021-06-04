@@ -1,17 +1,30 @@
 import Image from 'next/image';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { PlayerContext } from '../../contexts/PlayerContext';
-import { BiShuffle, BiSkipPrevious, BiPlay, BiSkipNext, BiRepeat } from 'react-icons/bi';
+import { BiShuffle, BiSkipPrevious, BiPlay, BiPause, BiSkipNext, BiRepeat } from 'react-icons/bi';
 import Slider from 'rc-slider';
 
-import 'rc-slider/assets/index.css';
 import { PlayerContainer, PlayingEpisode, EmptyPlayer, ProgressContainer, ButtonContainer } from './styles';
+import 'rc-slider/assets/index.css';
 
 
 export function Player() {
-    const { isOpened, episodeList, currentEpisodeIndex } = useContext(PlayerContext)
+    const { isOpened, episodeList, currentEpisodeIndex, isPlaying, togglePlay, setPlayingState } = useContext(PlayerContext)
 
     const episode = episodeList[currentEpisodeIndex]
+    const audioRef = useRef<HTMLAudioElement>(null)
+
+    useEffect(() => {
+        if(!audioRef.current) {
+            return
+        }
+        
+        if(isPlaying) {
+            audioRef.current.play()
+        } else {
+            audioRef.current.pause()
+        }
+    }, [isPlaying])
 
     return (
         <PlayerContainer className={!isOpened && 'isClosed'}>
@@ -59,6 +72,16 @@ export function Player() {
                     <span>00.00</span>
                 </ProgressContainer>
 
+                {episode && (
+                    <audio 
+                        autoPlay
+                        src={episode.url}
+                        ref={audioRef}
+                        onPlay={() => setPlayingState(true)}
+                        onPause={() => setPlayingState(false)}
+                    />
+                )}
+
                 <ButtonContainer>
                     <button type="button" className="side" disabled={!episode}>
                         <BiShuffle />
@@ -66,8 +89,13 @@ export function Player() {
                     <button type="button" className="main" disabled={!episode}>
                         <BiSkipPrevious />
                     </button>
-                    <button type="button" className="main playBtn" disabled={!episode}>
-                        <BiPlay />
+                    <button 
+                        type="button" 
+                        className="main playBtn" 
+                        disabled={!episode} 
+                        onClick={togglePlay}
+                    >
+                        {isPlaying ? <BiPause style={{ left: '1.8rem' }} /> : <BiPlay />}
                     </button>
                     <button type="button" className="main" disabled={!episode}>
                         <BiSkipNext />

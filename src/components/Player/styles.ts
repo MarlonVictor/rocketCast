@@ -193,6 +193,10 @@ export const ButtonContainer = styled.div`
             &:hover:not(:disabled) {
                 filter: brightness(0.9);
             }
+
+            @media(max-width: 1190px) {
+                width: 3.8rem;
+            }
         }
     }
 

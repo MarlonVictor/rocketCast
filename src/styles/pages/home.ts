@@ -181,11 +181,25 @@ export const LatestEpisodes = styled.section`
             }
 
             button {
-               ${cssPlayButton}
-
                 position: absolute;
                 right: 1rem;
                 bottom: 1rem;
+
+                &.playBtn {
+                    ${cssPlayButton}
+                }
+
+                &.playingBtn {
+                    width: 2rem;
+                    height: 2rem;
+
+                    background: transparent;
+                    color: var(--pink-500);
+                    font-size: 2rem;
+
+                    border: none;
+                    pointer-events: none;
+                }
             }
         }
     }

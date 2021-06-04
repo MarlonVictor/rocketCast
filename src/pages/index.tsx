@@ -7,6 +7,7 @@ import Image from 'next/image';
 import ptBR  from 'date-fns/locale/pt-BR';
 import { format, parseISO } from 'date-fns';
 import { RiArrowRightSLine } from 'react-icons/ri';
+import { CgLoadbarSound } from 'react-icons/cg';
 import { BiPlay } from 'react-icons/bi';
 import { motion } from 'framer-motion';
 
@@ -34,7 +35,14 @@ interface HomeProps {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-    const { isOpened, play } = useContext(PlayerContext)
+    const { isOpened, episodeList, currentEpisodeIndex, isPlaying, playList } = useContext(PlayerContext)
+
+    const episode = episodeList[currentEpisodeIndex]
+
+    const epList = [
+        ...latestEpisodes,
+        ...allEpisodes
+    ]
 
     return (
         <HomeContainer className={isOpened && 'PlayerOpened'}>
@@ -48,13 +56,13 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 <RiArrowRightSLine className="sliderArrow" />
 
                 <ul>
-                    {latestEpisodes.map((ep, key) => {
+                    {latestEpisodes.map((ep, index) => {
                         return (
                             <motion.li 
                                 key={ep.id}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: [0, 1], y: 0 }}
-                                transition={{ duration: 0.8, delay: key/5 }}
+                                transition={{ duration: 0.8, delay: index/5 }}
                             >
                                 <Image 
                                     width={200}
@@ -73,9 +81,18 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     <span>{ep.durationAsString}</span>
                                 </motion.div>
 
-                                <button type="button" onClick={() => play(ep)}>
-                                    <BiPlay />
-                                </button>
+                                {ep.title === episode?.title  && isPlaying
+                                    ? (
+                                        <button className="playingBtn">
+                                            <CgLoadbarSound />
+                                        </button>
+                                    )
+                                    : (
+                                        <button type="button" className="playBtn" onClick={() => playList(epList, index)}>
+                                            <BiPlay />
+                                        </button>
+                                    )
+                                }
                             </motion.li>
                         )
                     })}
@@ -97,7 +114,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                         </tr>
                     </thead>
                     <tbody>
-                        {allEpisodes.map(ep => {
+                        {allEpisodes.map((ep, index) => {
                             return (
                                 <tr key={ep.id}>
                                     <td className="tableHidden" style={{ width: 72 }}>
@@ -129,9 +146,18 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                                     </td>
 
                                     <td>
-                                        <button type="button" onClick={() => play(ep)}>
-                                            <BiPlay />
-                                        </button>
+                                        {ep.title === episode?.title && isPlaying
+                                            ? (
+                                                <CgLoadbarSound 
+                                                    style={{ transform: 'scale(2.5)', marginLeft: '0.5rem', color: 'var(--pink-500)' }}
+                                                /> 
+                                            )  
+                                            : (
+                                                <button type="button" onClick={() => playList(epList, index + latestEpisodes.length)}>
+                                                    <BiPlay /> 
+                                                </button>
+                                            )
+                                        }
                                     </td>
                                 </tr>
                             )
