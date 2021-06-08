@@ -128,6 +128,14 @@ export const ProgressContainer = styled.div`
         width: 4rem;
 
         text-align: center;
+        color: var(--gray-200);
+
+        &:first-child {
+            transform: translateX(-5px);
+        }
+        &:last-child {
+            transform: translateX(5px);
+        }
     }
 
     .slider {
@@ -168,10 +176,15 @@ export const ButtonContainer = styled.div`
 
         &:disabled {
             cursor: default;
+            filter: brightness(0.5);
         }
 
         &:hover:not(:disabled) {
             filter: brightness(0.7);
+        }
+
+        &.isActive svg {
+            color: var(--pink-400);
         }
 
         &.side {

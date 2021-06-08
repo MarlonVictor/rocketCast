@@ -1,11 +1,12 @@
+import { useContext } from 'react';
+
+import { BsMoon, BsSun } from 'react-icons/bs';
+import { ThemeContext } from 'styled-components';
 import Switch from 'react-switch';
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
-import { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
-import { BsMoon, BsSun } from 'react-icons/bs';
 
-import { PlayerContext } from '../../contexts/PlayerContext';
+import { usePlayer } from '../../contexts/PlayerContext';
 
 import { HeaderContainer, Logo } from './styles';
 
@@ -15,7 +16,7 @@ interface HeaderProps {
 }
 
 export function Header({ toggleTheme }: HeaderProps) {
-    const { isOpened } = useContext(PlayerContext)
+    const { isOpened } = usePlayer()
     const themeContext = useContext(ThemeContext)
 
 

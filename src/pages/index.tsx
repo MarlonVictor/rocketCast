@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -12,7 +11,7 @@ import { BiPlay } from 'react-icons/bi';
 import { motion } from 'framer-motion';
 
 import { api } from '../services/api';
-import { PlayerContext } from '../contexts/PlayerContext';
+import { usePlayer } from '../contexts/PlayerContext';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 
 import { HomeContainer, LatestEpisodes, AllEpisodes } from '../styles/pages/home';
@@ -35,7 +34,7 @@ interface HomeProps {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-    const { isOpened, episodeList, currentEpisodeIndex, isPlaying, playList } = useContext(PlayerContext)
+    const { isOpened, episodeList, currentEpisodeIndex, isPlaying, playList } = usePlayer()
 
     const episode = episodeList[currentEpisodeIndex]
 
