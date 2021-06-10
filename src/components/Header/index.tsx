@@ -27,7 +27,7 @@ export function Header({ toggleTheme }: HeaderProps) {
     return (
         <HeaderContainer className={isOpened && 'PlayerOpened'}>
             <Logo>
-                <img src="/logo.svg" alt="RocketCast" />
+                <img src="/icons/logo.svg" alt="RocketCast" />
                 <h2>RocketCast</h2>
             </Logo>
 

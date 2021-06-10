@@ -20,40 +20,22 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         transition: background-color .3s;
-
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-            transition: .3s;
-        }
-        ::-webkit-scrollbar-thumb {
-            background:  ${({ theme }) => theme.scrollbar};
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-track{
-            background:  ${({ theme }) => theme.border};
-            border-radius: 10px;
-        }
     }
 
     body {
-        background: ${({ theme }) => theme.background};
         overflow-y: hidden;
     }
 
     body, input, textarea, button {
         font: 500 1rem Inter, sans-serif;
-        color: ${({ theme }) => theme.text};
     }
 
     h1 {
         font: 600 2rem Lexend, sans-serif;
-        color: ${({ theme }) => theme.title};
     }
 
     h2 {
         font: 600 1.5rem Lexend, sans-serif;
-        color: ${({ theme }) => theme.title};
     }
 
     button {

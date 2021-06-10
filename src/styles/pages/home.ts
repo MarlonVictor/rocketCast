@@ -32,6 +32,9 @@ export const HomeContainer = styled.div`
     padding: 0 4rem;
     height: calc(100vh - 5rem);
 
+    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.background};
+
     &.PlayerOpened {
         @media(min-width: 1190px) {
             max-width: calc(100vw - 25rem);
@@ -41,6 +44,22 @@ export const HomeContainer = styled.div`
     h2 {
         margin-top: 3rem;
         margin-bottom: 1.5rem;
+
+        color: ${({ theme }) => theme.title};
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        transition: .3s;
+    }
+    ::-webkit-scrollbar-thumb {
+        background:  ${({ theme }) => theme.scrollbar};
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track{
+        background:  ${({ theme }) => theme.border};
+        border-radius: 10px;
     }
 
     @media(max-width: 375px) {
@@ -84,10 +103,14 @@ export const LatestEpisodes = styled.section`
         list-style: none;
         overflow-x: auto;
 
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+            transition: .3s;
+        }
         ::-webkit-scrollbar-thumb {
             background: ${({ theme }) => theme.border};
         }
-
         ::-webkit-scrollbar-track {
             background: transparent;
         }

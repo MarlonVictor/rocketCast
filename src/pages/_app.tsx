@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { motion } from 'framer-motion';
@@ -21,6 +22,9 @@ export default function MyApp({ Component, pageProps, router }) {
         <PlayerContextProvider>
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
+                <Head>
+                    <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover' />
+                </Head>
                 <section className="GlobalContainer">
                     <main>
                         <Header toggleTheme={toggleTheme} />

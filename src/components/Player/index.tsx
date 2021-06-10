@@ -71,7 +71,7 @@ export function Player() {
     return (
         <PlayerContainer className={!isOpened && 'isClosed'}>
             <header>
-                <img src="/playing.svg" alt="Tocando agora" />
+                <img src="/icons/playing.svg" alt="Tocando agora" />
                 <strong>Tocando agora</strong>
             </header>
 

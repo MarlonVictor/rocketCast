@@ -7,6 +7,23 @@ export const EpisodeContainer = styled.div`
 
     min-height: calc(100vh - 5rem);
 
+    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.background};
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        transition: .3s;
+    }
+    ::-webkit-scrollbar-thumb {
+        background:  ${({ theme }) => theme.scrollbar};
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track{
+        background:  ${({ theme }) => theme.border};
+        border-radius: 10px;
+    }
+
     &.PlayerOpened {
         @media(min-width: 1191px) {
             margin-right: 25rem;
@@ -90,6 +107,7 @@ export const EpisodeContainer = styled.div`
 
         h1 {
             margin: 2rem 0 1.5rem;
+            color: ${({ theme }) => theme.title};
 
             @media(max-width: 425px) {
                 font-size: 1.5rem;

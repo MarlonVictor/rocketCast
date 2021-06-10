@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 
 export const HeaderContainer = styled.header`
-    background: ${({ theme }) => theme.card};
-    height: 5rem;
-
     display: flex;
     align-items: center;
 
+    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.card};
+
+    height: 5rem;
     padding: 2rem 4rem;
 
     border-bottom: 1px solid ${({ theme }) => theme.border};
@@ -57,5 +58,7 @@ export const Logo = styled.div`
     h2 {
         margin-left: 1rem;
         pointer-events: none;
+
+        color: ${({ theme }) => theme.title};
     }
 `
