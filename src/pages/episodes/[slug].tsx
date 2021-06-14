@@ -85,7 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         }
     })
 
-    const paths = data.map((path: Episode) => {
+    const paths = data.map(path => {
         return {
             params: {
                 slug: path.id
