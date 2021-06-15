@@ -5,25 +5,25 @@
     "theme_color": "#2A0466",
     "background_color": "#F7F8FA",
     "start_url": "/",
-    "scope": "/",
     "display": "standalone",
+    "orientation": "portrait",
     "lang": "pt-BR",
     "icons": [
       {
-        "src": "/logo.svg",
+        "src": "/images/icon.png",
         "sizes": "192x192",
-        "type": "image/svg",
+        "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/logo.svg",
+        "src": "/images/icon.png",
         "sizes": "384x384",
-        "type": "image/svg"
+        "type": "image/png"
       },
       {
-        "src": "/logo.svg",
+        "src": "/images/icon.png",
         "sizes": "512x512",
-        "type": "image/svg"
+        "type": "image/png"
       }
     ]
 }

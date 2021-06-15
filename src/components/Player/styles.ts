@@ -50,7 +50,7 @@ export const PlayerContainer = styled.div`
         height: auto;
         padding: 2rem 4rem;
 
-        position: absolute;
+        position: fixed;
         bottom: 0;
     }
 

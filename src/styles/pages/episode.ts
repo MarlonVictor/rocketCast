@@ -146,7 +146,7 @@ export const EpisodeContainer = styled.div`
 
     .description {
         margin-top: 2rem;
-        padding-bottom: 5rem;
+        margin-bottom: 7rem;
 
         line-height: 1.6rem;
         color: ${({ theme }) => theme.title};

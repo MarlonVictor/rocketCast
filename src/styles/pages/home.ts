@@ -230,10 +230,14 @@ export const LatestEpisodes = styled.section`
 `
 
 export const AllEpisodes = styled.section`
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
 
     @media(max-width: 1190px) {
-        padding-bottom: 16rem;
+        margin-bottom: 16rem;
+    }
+
+    @media(max-width: 380px) {
+        margin-bottom: 18rem;
     }
 
     table {
