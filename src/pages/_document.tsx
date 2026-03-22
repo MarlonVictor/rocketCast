@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext} from 'next/document';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 
@@ -6,16 +6,16 @@ export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
         const sheet = new ServerStyleSheet()
         const originalRenderPage = ctx.renderPage
-    
+
         try {
-            ctx.renderPage = () => 
+            ctx.renderPage = () =>
                 originalRenderPage({
-                    enhanceApp: (App) => (props) => 
-                        sheet.collectStyles(<App { ...props } />)
+                    enhanceApp: (App) => (props) =>
+                        sheet.collectStyles(<App {...props} />)
                 })
-    
+
             const initialProps = await Document.getInitialProps(ctx)
-    
+
             return {
                 ...initialProps,
                 styles: (
@@ -36,8 +36,8 @@ export default class MyDocument extends Document {
                 <Head lang="pt">
                     <link rel="preconnect" href="https://fonts.gstatic.com" />
                     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend:wght@500;600&display=swap" rel="stylesheet" />
-                    <link rel='manifest' href='/manifest.json' />  
-                    <link rel="shortcut icon" href="/images/icon.png" type="image/png"/>
+                    <link rel='manifest' href='/manifest.json' />
+                    <link rel="shortcut icon" href="/images/icon.png" type="image/png" />
 
                     <meta name='theme-color' content='#E935C5' />
                     <meta name='application-name' content='RocketCast' />
@@ -49,7 +49,14 @@ export default class MyDocument extends Document {
                     <meta name='mobile-web-app-capable' content='yes' />
                     <meta name='msapplication-TileColor' content='#E935C5' />
                     <meta name='msapplication-tap-highlight' content='no' />
-                            
+                    <meta name='msapplication-TileImage' content='/images/icon.png' />
+                    <meta name='msapplication-config' content='/browserconfig.xml' />
+
+                    <link rel='icon' type='image/png' sizes='16x16' href='/images/icon.png' />
+                    <link rel='icon' type='image/png' sizes='32x32' href='/images/icon.png' />
+                    <link rel='icon' type='image/png' sizes='192x192' href='/images/icon.png' />
+                    <link rel='icon' type='image/png' sizes='512x512' href='/images/icon.png' />
+
                     <link rel='apple-touch-icon' href='/images/icon.png' />
 
                     <meta name="twitter:title" content="RocketCast - Podcasts da Rocketseat" />
