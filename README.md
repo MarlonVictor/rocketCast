@@ -1,4 +1,6 @@
-<h1 align="center" style="font-weight: bold;">rocketCast 🎙️</h1>
+<h1 align="center" style="font-weight: bold;">
+  <img src="https://user-images.githubusercontent.com/62356988/121816621-1022cc80-cc53-11eb-92a2-b3b8441c3ff9.png" width="300px">
+</h1>
 
 <p align="center">
   <img src="https://img.shields.io/github/last-commit/MarlonVictor/rocketCast?style=for-the-badge&logo=git&logoColor=white&labelColor=09090A&color=d541dd" alt="last commit" />
